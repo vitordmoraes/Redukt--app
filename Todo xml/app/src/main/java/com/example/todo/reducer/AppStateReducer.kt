@@ -9,10 +9,8 @@ import com.example.todo.model.Todo
 class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.ADD_TODO)
-    fun addTodo(state: AppState, newItem: String): AppState {
-        state.todos.let {
-            return state.copy(todos = state.todos
-                .plus(Todo(0, newItem, false))) }
+    fun addTodo(state: AppState, newItem: Todo): AppState {
+        state.todos.let { return state.copy(todos = state.todos.plus(newItem)) }
     }
 
     @Reduce(Actions.DELETE_DONE)
@@ -24,9 +22,13 @@ class AppStateReducer : BaseAnnotatedReducer<AppState>() {
 
     @Reduce(Actions.TODO_TOGGLE)
     fun todoToggle(state: AppState, item: Int): AppState {
-        val todos = state.todos.toMutableList()
-        todos[item] = todos[item].copy(completed = !todos[item].completed)
-        return state.copy(todos = todos)
+        state.todos.let {
+            return state.copy(todos = state.todos.mapIndexed { index, todo ->
+                if (index == item) {
+                    todo.copy(completed = !todo.completed)
+                } else todo
+            })
+        }
     }
 
 }

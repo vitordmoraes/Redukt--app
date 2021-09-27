@@ -16,7 +16,6 @@ class App : Application() {
             val redukt = Redukt(appState)
 
             addReducers(redukt)
-//            addMiddlewares(context, redukt)
 
             return redukt
         }
@@ -24,10 +23,6 @@ class App : Application() {
         private fun addReducers(redukt: Redukt<AppState>){
             redukt.reducers["appStateReducers"] = AppStateReducer()
         }
-
-//        private fun addMiddlewares(context: Context, redukt: Redukt<AppState>){
-//            redukt.middlewares["todoListMiddlewares"] = TodoListMiddleware()
-//        }
     }
 
     override fun onCreate() {

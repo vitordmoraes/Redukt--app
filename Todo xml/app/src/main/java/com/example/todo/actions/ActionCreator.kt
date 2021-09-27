@@ -22,8 +22,8 @@ class ActionCreator private constructor(){
         App.redukt.dispatch(action, true)
     }
 
-    fun addTodo(text: String) {
-        asyncDispatch(Action(ADD_TODO,text))
+    fun addTodo(todo: Todo) {
+        asyncDispatch(Action(ADD_TODO,todo))
     }
 
     fun deleteDone(list: List<Todo>) {
