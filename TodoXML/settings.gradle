@@ -1,0 +1,2 @@
+rootProject.name = "Todo XML"
+include ':app'
